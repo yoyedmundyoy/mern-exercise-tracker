@@ -26,11 +26,9 @@ const usersRouter = require("./routes/users");
 app.use("/exercises", exercisesRouter);
 app.use("/users", usersRouter);
 
-app.use(express.static("mern-exercise-tracker/build"));
-app.get("*", (req, res) => {
-  res.sendFile(
-    path.resolve(__dirname, "mern-exercise-tracker", "build", "index.html")
-  );
+app.use(express.static(path.join(__dirname, "mern-exercise-tracker")));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 app.listen(port, () => {
